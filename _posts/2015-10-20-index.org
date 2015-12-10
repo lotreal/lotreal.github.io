@@ -1,0 +1,41 @@
+---
+layout: post
+title: 目录
+---
+
+- 基础环境
+
+  - DNS
+
+    - powerdns
+
+    - consul
+
+  - 服务发现
+
+    - consul
+
+- 存储
+
+  - SAN
+
+    - iSCSI
+
+- 安装
+
+  - yum: 配置私有源
+
+  - rpmbuild: 配置 rpm 打包环境
+
+  - consul-rpm: 打包 consul
+
+    https://github.com/lotreal/consul-rpm
+
+- 监控
+
+  - APM
+
+    - [[http://newrelic.com/][newrelic]]
+
+    - [[https://www.takipi.com/][takipi]]
+      每当系统发现异常状况或者日志中出现错误信息时，Takipi就会捕捉状况出现时的各类与方法及设备相关的状态变量并将结果呈现给大家。
