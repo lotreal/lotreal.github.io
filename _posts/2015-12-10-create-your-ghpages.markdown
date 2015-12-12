@@ -9,7 +9,7 @@ date:   2015-12-10 20:52:00
 * 个人网站：在 [Github] 上建 username.github.io 库，提交网站内容到 master 分支；
 * 项目网站：提交网站内容到项目的 gh-pages 分支。
 
-### 创建步骤
+## 开始
 
 {% highlight bash %}
 # 安装时如遇“有关法规”问题，可使用 https://ruby.taobao.org 镜像
@@ -27,7 +27,7 @@ git remote add origin git@github.com:lotreal/lotreal.github.io.git
 git push -u origin master
 {% endhighlight %}
 
-### 完成
+## 完成
 访问 http://lotreal.github.io/ 即可
 
 > 另：在 lotreal.github.io 目录下使用命令：jekyll serve --watch 可在本地预览网站效果。

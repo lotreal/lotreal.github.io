@@ -6,8 +6,9 @@ date:   2015-12-10 20:52:00
 
 ## 背景
 
-想使用 [dagger 2] 替换项目中的 [roboguice]，但 [dagger 2] 里没有 @InjectExtra 这样的便利，于是想自制一个，像 [dagger 2] 那样在编译时生成相关代码。
-但我刚接触 Android 开发 1 个多月，Java 多年没用，maven 都不会。这真是一个有意思的挑战，于是有了这篇入门文。
+想用 [dagger 2] 替换掉项目中的 [roboguice]，但 [dagger 2] 又没有提供 @InjectExtra 这样的便利，就想自制一个，像 [dagger 2] 那样在编译时生成相关代码。
+
+但我刚接触 Android 开发 1 个多月，Java 多年没用，maven 都不会。这将是一个有意思的挑战，于是有了这篇入门文。
 
 ## 开始
 
