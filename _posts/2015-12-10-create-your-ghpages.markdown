@@ -12,7 +12,7 @@ date:   2015-12-10 20:52:00
 ### 创建步骤
 
 {% highlight bash %}
-# 安装时如遇法规问题，可使用 https://ruby.taobao.org 镜像
+# 安装时如遇“有关法规”问题，可使用 https://ruby.taobao.org 镜像
 gem install github-pages
 
 # 生成新 jekyll 站
