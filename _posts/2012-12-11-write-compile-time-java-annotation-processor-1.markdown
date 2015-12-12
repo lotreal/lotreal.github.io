@@ -31,7 +31,7 @@ mvn install
 # criptor for com.hannesdorfmann.annotationprocessing101.factorypattern:annotation:jar:1.0: Failure to find com.hannesdorfmann.annotationprocessing101.factory pattern:parent:pom:1.0 in https://repo.maven.apache.org/maven2 was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced -> [Help 1]
 {% endhighlight %}
 
-Google 到解决方法：
+Google 到[解决方法](http://stackoverflow.com/questions/6642146/maven-failed-to-read-artifact-descriptor)：
 
 > This problem can also occur if you have some child projects that refer to a parent pom and you have not installed from the parent pom directory (run mvn > install from the parent directory). One of the child projects may depend on a sibling project and when it goes to read the pom of the sibling, it will > > fail with the error mentioned in the question unless you have installed from the parent pom directory at least once.
 >
@@ -43,8 +43,11 @@ mvn install
 # ... 顺利完成
 {% endhighlight %}
 
+现在我们已将该项目打包并安装到了 maven 的本地仓库里：
 
-### 二、在 gradle 项目里使用
+> ~/.m2/repository/com/hannesdorfmann/annotationprocessing101/factorypattern/
+
+### 二、在 Swain 项目里使用
 
 {% highlight groovy %}
 repositories {
@@ -58,7 +61,9 @@ dependencies {
 }
 {% endhighlight %}
 
-把上面的代码，和 annotationprocessing101 里提供的 [示例代码](https://github.com/sockeqwe/annotationprocessing101/tree/master/factory-sample/pizzastore) 加入了 [Swain] (个人用来测试 Android 开发的实验项目)，Build->Rebuild Project 后，成功生成了代码： Swain/app/build/generated/source/apt/debug/im/lot/swain/pizza/MealFactory.java
+[Swain] 是个人用来测试 Android 开发的实验项目，把上面的代码，和 annotationprocessing101 里提供的 [示例代码](https://github.com/sockeqwe/annotationprocessing101/tree/master/factory-sample/pizzastore) 加入后 ，Build->Rebuild Project ，就成功生成了代码：
+
+> Swain/app/build/generated/source/apt/debug/im/lot/swain/pizza/MealFactory.java
 
 完整可运行代码，修改文件记录，可见 Swain 项目 dagger2 分支下的 [Swain-dagger2-cf9190]。
 
