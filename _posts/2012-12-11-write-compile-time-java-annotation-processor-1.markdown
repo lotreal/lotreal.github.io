@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "自制编译时 Java 注解处理器（一）"
-date:   2015-12-10 20:52:00
+date:   2015-12-11 21:58:00
 ---
 
 ## 背景
@@ -28,8 +28,11 @@ mvn install
 
 annotationprocessing101/factory/processor
 mvn install
-# [ERROR] Failed to execute goal on project processor: Could not resolve dependencies for project com.hannesdorfmann.annotationprocessing101.factorypattern:processor:jar:1.0: Failed to collect dependencies at com.hannesdorfmann.annotationprocessing101.factorypattern:annotation:jar:1.0: Failed to read artifact des
-# criptor for com.hannesdorfmann.annotationprocessing101.factorypattern:annotation:jar:1.0: Failure to find com.hannesdorfmann.annotationprocessing101.factory pattern:parent:pom:1.0 in https://repo.maven.apache.org/maven2 was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced -> [Help 1]
+# [ERROR] Failed to execute goal on project processor: Could not resolve dependencies for project com.hannesdorfmann.annotationprocessing101.factorypattern:processor:jar:1.0:
+# Failed to collect dependencies at com.hannesdorfmann.annotationprocessing101.factorypattern:annotation:jar:1.0:
+# Failed to read artifact descriptor for com.hannesdorfmann.annotationprocessing101.factorypattern:annotation:jar:1.0:
+# Failure to find com.hannesdorfmann.annotationprocessing101.factory pattern:parent:pom:1.0 in https://repo.maven.apache.org/maven2 was cached in the
+# local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced -> [Help 1]
 {% endhighlight %}
 
 Google 到[解决方法](http://stackoverflow.com/questions/6642146/maven-failed-to-read-artifact-descriptor)：
