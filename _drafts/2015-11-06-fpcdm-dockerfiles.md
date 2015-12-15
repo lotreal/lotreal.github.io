@@ -1,13 +1,8 @@
 ---
 layout: post
-title: 安卓学习笔记
+title:  "fpcdm/dockerfiles"
+date:   2015-11-06 21:58:00
 ---
-android studio
-
- 3002* adb devices
- 3051  adb
- 3052  adb -s D8YDU15701008961 install /luo/workspace/fpcdm/reksai/android/zac/LttCustomer/lttgeneric/build/outputs/apk/lttgeneric-release-0.0.7.0637-1.apk
-
 
 + centos:centos7
   - lotreal/base

@@ -6,15 +6,17 @@ date:   2015-12-11 21:58:00
 
 ## 背景
 
-想用 [dagger 2] 替换掉项目中的 [roboguice]，但 [dagger 2] 又没有提供 @InjectExtra 这样的便利，就想自制一个，像 [dagger 2] 那样在编译时生成相关代码。
+DI（依赖注入）工具里，[dagger 2] 完全不使用反射，而是在编译时生成所有相关代码。对比 [Roboguice] 等，除了避免反射的性能损耗，更重要的是代码更清晰，更好调试。
 
-但我刚接触 Android 开发 1 个多月，Java 多年没用，maven 都不会。这将是一个有意思的挑战，于是有了这篇入门文。
+所以，想用 [dagger 2] 替换掉项目中的 [roboguice]。但是 [dagger 2] 又没有提供 @InjectExtra 这样的便利，就想自制一个，并像 [dagger 2] 那样在编译时生成相关代码。
 
-## 开始
+> 注意：这是一篇入门文，是一次探险。因为作者是新手，刚接触安卓开发 1 个多月，Java 多年没用，maven 不会 gradle 不熟。
+
+## 起步
 
 首先很幸运的 Google 到了教程 [ANNOTATION PROCESSING 101] 及其译文 [Java注解处理器]，开始旅程：
 
-### 一、编译 sockeqwe/annotationprocessing101
+### 0x01 编译 sockeqwe/annotationprocessing101
 
 {% highlight bash %}
 # 安装 maven
@@ -51,7 +53,7 @@ mvn install
 
 > ~/.m2/repository/com/hannesdorfmann/annotationprocessing101/factorypattern/
 
-### 二、在 Swain 项目里使用
+### 0x02 在 Swain 项目里使用
 
 {% highlight groovy %}
 repositories {
@@ -68,8 +70,14 @@ dependencies {
 [Swain] 是个人用来测试 Android 开发的实验项目，把上面的代码，和 annotationprocessing101 里提供的 [示例代码](https://github.com/sockeqwe/annotationprocessing101/tree/master/factory-sample/pizzastore) 加入后 ，Build->Rebuild Project ，就成功生成了代码：
 
 > Swain/app/build/generated/source/apt/debug/im/lot/swain/pizza/MealFactory.java
+>
+> 完整可运行代码，修改文件记录，可见 Swain 项目 dagger2 分支下的 [Swain-dagger2-cf9190]。
 
-完整可运行代码，修改文件记录，可见 Swain 项目 dagger2 分支下的 [Swain-dagger2-cf9190]。
+现在，我们有了一个可运行的自制编译时代码生成器。
+
+### 0x03 相关链接
+
+1. [ANNOTATION PROCESSING 101]
 
 [ANNOTATION PROCESSING 101]: http://hannesdorfmann.com/annotation-processing/annotationprocessing101/
 [Java注解处理器]: http://www.race604.com/annotation-processing/
