@@ -33,6 +33,8 @@ git push -u origin master
 > 另：在 lotreal.github.io 目录下使用命令：jekyll serve --watch 可在本地预览网站效果。
 
 ### 相关链接
+
+* [Jekyll Documnetation](http://jekyllrb.com/docs/home/)
 * [Using Jekyll with Pages](https://help.github.com/articles/using-jekyll-with-pages/)
 * [Markdown Basic](http://daringfireball.net/projects/markdown/basics)
 * [可用代码高亮语言列表](http://pygments.org/docs/lexers/)

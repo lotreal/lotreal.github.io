@@ -4,7 +4,7 @@ title:  "自制编译时 Java 注解处理器（二）"
 date:   2015-12-12 10:42:00
 ---
 
-继续探险，开始自制 @InjectExtra
+继续探险，目标是自制 @InjectExtra。
 
 ## 0x01 怎么开始
 
@@ -18,7 +18,7 @@ date:   2015-12-12 10:42:00
 git clone git@github.com:google/dagger.git
 cd dagger
 
-# 修改包名，此处使用了 osx 自带的 sed，参数用法和 gun sed 略有不同
+# 修改包名，注意 OSX 自带的 sed 参数用法和 GNU sed 略有不同
 find . -name pom.xml | xargs sed -i "" "s/com.google.dagger/im.lot.dagger/"
 mvn install
 ... 顺利完成
@@ -36,25 +36,27 @@ dependencies {
 
 ## 0x02 无法接受的 3 分钟
 
-但是，每次 mvn install 耗时 1m30s ，意味着每次 im.lot.dagger 的小改动，想在 Swain 看到效果的话，都必须等 3 分钟！
+问题是，每次 mvn install 需 1m30s 加上 Swain 里同步依赖的时间。意味着每次 im.lot.dagger 的小改动，想在 Swain 看到效果的话，都必须等 3 分钟！
 
 试着在 Swain 新建了 Java Library 类型 module: dagger-compiler，然后引入相关代码：
 
 > 为方便修改，我在 [Swain/dagger-compiler/src/main/java](https://github.com/lotreal/Swain/blob/e3c7c0ff3f09a3649b252469a1d6974205a1b66e/dagger-compiler/src/main/java) 目录下， ln -s 了 [dagger/compiler/src/main/java/dagger](https://github.com/lotreal/dagger/tree/4d91161f59eb688d19b5aeac0e58eb546086715c/compiler/src/main/java/dagger/) 目录
 
-遇到问题：Java Library Module 的 build.gradle 里，无法使用 provided 类型依赖，无法为 dagger-compiler 里大量使用的 @AutoValue 生成代码。
-
-Google 到[解决方法](http://stackoverflow.com/questions/18738888/how-to-use-provided-scope-for-jar-file-in-gradle-build)，使用 [gradle-propdeps-plugin] 解决了问题。
-
 {% highlight groovy %}
 apt project(':dagger-compiler')
 {% endhighlight %}
 
-Module 使用成功！现在代码是：[Swain-dagger2-dcb1c5]，修改 dagger-compiler 后，只需 Rebuild Swain , 15 秒后就可以看到修改后的效果了。
+但在编译 dagger-compiler 时遇到问题：Java Library Module 的 build.gradle 里，无法使用 provided 类型依赖，无法为 dagger-compiler 里大量使用的 @AutoValue 生成代码。
+
+Google 到[解决方法](http://stackoverflow.com/questions/18738888/how-to-use-provided-scope-for-jar-file-in-gradle-build)，使用 [gradle-propdeps-plugin] 解决了问题。
+
+现在代码是：[Swain-dagger2-dcb1c5]，Module 使用成功！修改 dagger-compiler 后，只需 Rebuild Swain , 15 秒就可以看到修改后的效果了。
 
 ## 0x03 断点调试
 
-在 dagger-compiler 里使用 Logger 打印日志调试后，发现如果能断点调试就更好了，参考 [Debug an Android annotation processor with gradle and IntelliJ (or Eclipse)]:
+先试了下在 dagger-compiler 里使用 Logger 打印日志，可行但太慢。
+
+可以断点调试么？Google 到 [Debug an Android annotation processor with gradle and IntelliJ (or Eclipse)]:
 
 1. Android Studio：在 Run/Debug Configurations 里添加 Remote，配置取名 REMOTE，其它使用默认即可，然后菜单：Run->Debug 'REMOTE'
 
@@ -66,7 +68,7 @@ org.gradle.jvmargs=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address
 
 现在开发起来就愉快多了，插入了自制的简易 @InjectExtra 代码后，项目文件为：[Swain](https://github.com/lotreal/Swain/tree/e3c7c0ff3f09a3649b252469a1d6974205a1b66e) + [dagger](https://github.com/lotreal/dagger/tree/4d91161f59eb688d19b5aeac0e58eb546086715c)
 
-> 注意：Swain/dagger-compiler 里链接使用了 dagger/compiler 里的代码。
+> 再次提醒：Swain/dagger-compiler 里链接使用了 dagger/compiler 里的代码。
 
 {% highlight java %}
 // 生成的 Swain/app/build/generated/source/apt/debug/
