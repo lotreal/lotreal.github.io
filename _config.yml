@@ -3,6 +3,7 @@ title: luo
 email: lotreal@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   罗涛的开发日志
+  <a href="https://github.com/lotreal/lotreal.github.io/issues">评论\留言入口</a>
 
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://lotreal.github.io/" # the base hostname & protocol for your site
